@@ -12,11 +12,7 @@ import finalPokemon.pokemon.Charmander;
 import finalPokemon.pokemon.Cyndaquil;
 import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-import finalPokemon.pokemon.Pokemon;
 import finalPokemon.pokemon.Squirtle;
-import java.awt.Image;
-import static java.awt.image.ImageObserver.WIDTH;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -35,6 +31,7 @@ public class GameScreen extends JFrame {
     public GameScreen(boolean ch, boolean bu, boolean sq) {
         initComponents();
         setFrame();
+        setText();
         initialize(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
         level1();
     }
@@ -50,43 +47,44 @@ public class GameScreen extends JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
+        button2 = new java.awt.Button();
+        button3 = new java.awt.Button();
+        button4 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(77, 141, 231, 204);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(705, 141, 231, 204);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 428, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(177, Short.MAX_VALUE))
-        );
+        button1.setLabel("button1");
+        getContentPane().add(button1);
+        button1.setBounds(101, 459, 353, 129);
+
+        button2.setLabel("button1");
+        getContentPane().add(button2);
+        button2.setBounds(101, 609, 353, 129);
+
+        button3.setLabel("button1");
+        getContentPane().add(button3);
+        button3.setBounds(482, 609, 353, 129);
+
+        button4.setLabel("button1");
+        getContentPane().add(button4);
+        button4.setBounds(482, 459, 353, 129);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void setFrame() {
         this.setTitle("Pokemon");
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setSize(1000,800);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -99,11 +97,20 @@ public class GameScreen extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button button1;
+    private java.awt.Button button2;
+    private java.awt.Button button3;
+    private java.awt.Button button4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
     private void level1() {
         cyndaquil = new Cyndaquil(jLabel2);
+    }
+
+    private void setText() {
+        jLabel2.setVisible(true);
+        jLabel2.setOpaque(true);
     }
 }

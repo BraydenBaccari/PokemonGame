@@ -27,7 +27,6 @@ public class StartMenu extends javax.swing.JFrame {
     public StartMenu() {
         initComponents();
         setText();
-        setButton();
         setFrame();
     }
 
@@ -46,8 +45,11 @@ public class StartMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().setLayout(null);
 
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalPokemon/pictures/title.png"))); // NOI18N
+        getContentPane().add(title);
+        title.setBounds(220, 50, 503, 164);
 
         pokemonSelect.setActionCommand("Play");
         pokemonSelect.setLabel("Pokemon Select");
@@ -56,6 +58,8 @@ public class StartMenu extends javax.swing.JFrame {
                 pokemonSelectActionPerformed(evt);
             }
         });
+        getContentPane().add(pokemonSelect);
+        pokemonSelect.setBounds(392, 301, 162, 39);
 
         playButton.setActionCommand("Play");
         playButton.setLabel("Play");
@@ -64,33 +68,8 @@ public class StartMenu extends javax.swing.JFrame {
                 playButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pokemonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(309, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pokemonSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
+        getContentPane().add(playButton);
+        playButton.setBounds(392, 252, 162, 39);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,8 +145,8 @@ public class StartMenu extends javax.swing.JFrame {
 
     private void setFrame() {
         this.setTitle("Pokemon");
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setSize(1000,600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -178,12 +157,7 @@ public class StartMenu extends javax.swing.JFrame {
         Image imgScale = img.getScaledInstance(title.getWidth(), title.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         title.setIcon(scaledIcon);
-        title.setLocation(650, WIDTH);
         title.setOpaque(true);
         add(title);
-    }
-
-    private void setButton() {
-        playButton.setLocation(780, 200);
     }
 }
