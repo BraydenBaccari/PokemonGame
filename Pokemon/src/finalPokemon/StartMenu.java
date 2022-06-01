@@ -5,6 +5,9 @@
 package finalPokemon;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -152,7 +155,8 @@ public class StartMenu extends javax.swing.JFrame {
     }
 
     private void setText() {
-        ImageIcon icon = new ImageIcon("C:\\Users\\l.mccausland\\Desktop\\Projects\\Pokemon\\src\\finalPokemon\\pictures\\title.png");
+        ImageIcon icon;
+        icon = new ImageIcon("\\pictures\\title.png");    
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(title.getWidth(), title.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);

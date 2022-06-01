@@ -25,10 +25,18 @@ public class GameScreen extends JFrame {
     private Squirtle squirtle;
     private Cyndaquil cyndaquil;
 
+    public boolean ch;
+    public boolean bu;
+    public boolean sq;
+
     /**
      * Creates new form GameScreen
      */
     public GameScreen(boolean ch, boolean bu, boolean sq) {
+        this.ch = ch;
+        this.bu = bu;
+        this.sq = sq;
+
         initComponents();
         setFrame();
         setText();
@@ -64,6 +72,11 @@ public class GameScreen extends JFrame {
         jLabel2.setBounds(705, 141, 231, 204);
 
         button1.setLabel("button1");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(button1);
         button1.setBounds(101, 459, 353, 129);
 
@@ -82,18 +95,46 @@ public class GameScreen extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        if (bu) {
+            seedBomb();
+        } else if (ch) {
+            scratch();
+
+        } else if (sq) {
+            tackle();
+
+        }
+    }//GEN-LAST:event_button1ActionPerformed
+
     private void setFrame() {
         this.setTitle("Pokemon");
-        this.setSize(1000,800);
+        this.setSize(1000, 800);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
     private void initialize(boolean ch, boolean bu, boolean sq) {
-        if (bu) bulbasaur = new Bulbasaur(jLabel1);
-        if (ch) charmander = new Charmander(jLabel1);
-        if (sq) squirtle = new Squirtle(jLabel1);
+        if (bu) {
+            bulbasaur = new Bulbasaur(jLabel1);
+            button1.setLabel(bulbasaur.attack0);
+            button2.setLabel(bulbasaur.attack1);
+            button3.setLabel(bulbasaur.attack2);
+            button4.setLabel(bulbasaur.attack3);
+        } else if (ch) {
+            charmander = new Charmander(jLabel1);
+            button1.setLabel(charmander.attack0);
+            button2.setLabel(charmander.attack1);
+            button3.setLabel(charmander.attack2);
+            button4.setLabel(charmander.attack3);
+        } else if (sq) {
+            squirtle = new Squirtle(jLabel1);
+            button1.setLabel(squirtle.attack0);
+            button2.setLabel(squirtle.attack1);
+            button3.setLabel(squirtle.attack2);
+            button4.setLabel(squirtle.attack3);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -112,5 +153,17 @@ public class GameScreen extends JFrame {
     private void setText() {
         jLabel2.setVisible(true);
         jLabel2.setOpaque(true);
+    }
+
+    private void seedBomb() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void scratch() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void tackle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
