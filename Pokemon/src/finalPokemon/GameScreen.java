@@ -29,6 +29,9 @@ public class GameScreen extends JFrame {
     public boolean bu;
     public boolean sq;
 
+    public  String currentEnemy;
+     public  int enemyHp;
+
     /**
      * Creates new form GameScreen
      */
@@ -40,8 +43,9 @@ public class GameScreen extends JFrame {
         initComponents();
         setFrame();
         setText();
+        level(random(1, 1));
         initialize(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
-        level1();
+
     }
 
     /**
@@ -54,11 +58,14 @@ public class GameScreen extends JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        enemy = new javax.swing.JLabel();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
         button3 = new java.awt.Button();
         button4 = new java.awt.Button();
+        output = new javax.swing.JLabel();
+        pokemonHpText = new javax.swing.JLabel();
+        enemyHpText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -67,9 +74,9 @@ public class GameScreen extends JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(77, 141, 231, 204);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(705, 141, 231, 204);
+        enemy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(enemy);
+        enemy.setBounds(705, 141, 231, 204);
 
         button1.setLabel("button1");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,18 +99,33 @@ public class GameScreen extends JFrame {
         getContentPane().add(button4);
         button4.setBounds(482, 459, 353, 129);
 
+        output.setText("A wild name has appeard!");
+        getContentPane().add(output);
+        output.setBounds(400, 220, 570, 100);
+
+        pokemonHpText.setText("jLabel2");
+        getContentPane().add(pokemonHpText);
+        pokemonHpText.setBounds(190, 390, 50, 20);
+
+        enemyHpText.setText("jLabel2");
+        getContentPane().add(enemyHpText);
+        enemyHpText.setBounds(640, 400, 50, 16);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         if (bu) {
-            seedBomb();
+            double dmg = seedBomb();
+            enemyHp -= dmg;
+            output.setText("Bulbasaur used Seed Bomb and did " + dmg + " damage!");
+            if (enemyHp < 0) output.setText(currentEnemy + " has fainted");
+   
         } else if (ch) {
             scratch();
 
         } else if (sq) {
             tackle();
-
         }
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -142,28 +164,72 @@ public class GameScreen extends JFrame {
     private java.awt.Button button2;
     private java.awt.Button button3;
     private java.awt.Button button4;
+    private javax.swing.JLabel enemy;
+    private javax.swing.JLabel enemyHpText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel output;
+    private javax.swing.JLabel pokemonHpText;
     // End of variables declaration//GEN-END:variables
 
-    private void level1() {
-        cyndaquil = new Cyndaquil(jLabel2);
+    private void level(int lvlNum) {
+        switch (lvlNum) {
+            case 1:
+                cyndaquil();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
     }
 
     private void setText() {
-        jLabel2.setVisible(true);
-        jLabel2.setOpaque(true);
+        enemy.setVisible(true);
+        enemy.setOpaque(true);
     }
 
-    private void seedBomb() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private double seedBomb() {
+        double dmg = bulbasaur.atk * 0.15;
+        return dmg;
     }
 
     private void scratch() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void tackle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private double tackle() {
+        double dmg = bulbasaur.atk * 0.05;
+        return dmg;
+    }
+
+    /**
+     * makes a random number between the high, low and size variables
+     *
+     * @param low
+     * @param high
+     * @return
+     */
+    private static int random(int low, int high) {
+        double seed = Math.random();
+        double L = (double) low;
+        double H = (double) high;
+        double value = (H - L + 1) * seed + L;
+        int answer = (int) value;
+        return answer;
+
+    }
+
+    private void cyndaquil() {
+        output.setText("A wild cyndaquil has appeared!");
+        cyndaquil = new Cyndaquil(enemy);
+        currentEnemy =  cyndaquil.name;
+        enemyHp = cyndaquil.hp;
+
     }
 }

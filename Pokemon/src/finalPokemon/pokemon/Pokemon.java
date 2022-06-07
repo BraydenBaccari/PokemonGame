@@ -12,7 +12,6 @@ import javax.swing.JLabel;
  */
 public class Pokemon {
 
-    public int index;
     public String name;
     public String type;
     public LinkedList attacks = new LinkedList();
@@ -24,20 +23,17 @@ public class Pokemon {
     public String attack3;
     //stats
     public int hp;
-    public int def;
     public int atk;
 
     /**
      * Default constructor, set class properties
      */
     public Pokemon(JLabel label) {
-        index = 0;
         this.label = label;
         name = null;
         type = null;
         //Moveset
         hp = 0;
-        def = 0;
         atk = 0;
         //moveset
         attack0 = null;

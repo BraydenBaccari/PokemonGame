@@ -19,9 +19,8 @@ public class Squirtle extends Pokemon {
         super(label);
 
         name = "Squirtle";
-        label.setIcon(new ImageIcon("C:\\Users\\l.mccausland\\Desktop\\Projects\\Pokemon\\src\\finalPokemon\\pictures\\squirtle2.png"));
+        label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/squirtle2.png")));
         //label.setText(name);
-        index = 2;
         type = "Water";
         //Moveset
         attack0 = "Tackle";
@@ -31,6 +30,5 @@ public class Squirtle extends Pokemon {
         //Stats
         atk = 48;
         hp = 44;
-        def = 65;
     }
 }

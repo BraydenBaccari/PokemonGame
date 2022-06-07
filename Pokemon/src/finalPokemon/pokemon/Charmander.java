@@ -18,10 +18,8 @@ public class Charmander extends Pokemon {
     public Charmander(JLabel label) {
         super(label);
 
-        index = 1;
         name = "Charmander";
-        label.setIcon(new ImageIcon("C:\\Users\\l.mccausland\\Desktop\\Projects\\Pokemon\\src\\finalPokemon\\pictures\\charmander2.png"));
-        //label.setText(name);
+        label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/charmander2.png")));
         type = "Fire";
         //Moveset
         attack0 = "Scratch";
@@ -31,7 +29,6 @@ public class Charmander extends Pokemon {
         //Stats
         atk = 52;
         hp = 39;
-        def = 43;
     }
 
 }

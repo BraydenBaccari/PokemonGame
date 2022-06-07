@@ -15,13 +15,21 @@ public class Cyndaquil extends Pokemon {
 
     public Cyndaquil(JLabel label) {
         super(label);
-        ImageIcon icon = new ImageIcon("C:\\Users\\l.mccausland\\Desktop\\Projects\\Pokemon\\src\\finalPokemon\\pictures\\cyndaquil.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/finalPokemon/pictures/cyndaquil.png"));
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         label.setIcon(scaledIcon);
         name = "Cyndaquil";
         type = "Fire";
+        //Moveset   
+        attack0 = "Tackle";
+        attack1 = "Quick Attack";
+        attack2 = "Smoke Screen";
+        attack3 = "Flamethrower";
+        //Stats
+        atk = 52;
+        hp = 39;
     }
 
 }

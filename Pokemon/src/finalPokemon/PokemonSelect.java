@@ -262,7 +262,7 @@ public class PokemonSelect extends javax.swing.JFrame {
     private void start() {
         checkPokemon();
     }
-
+    // he he he ha
     private void checkPokemon() {
         if (StartMenu.charmanderIsActive == true) {
             charmanderBox.setSelected(true);

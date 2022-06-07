@@ -18,7 +18,7 @@ public class Bulbasaur extends Pokemon {
     public Bulbasaur(JLabel label) {
         super(label);
         name = "Bulbasaur";
-        label.setIcon(new ImageIcon("C:\\Users\\l.mccausland\\Desktop\\Projects\\Pokemon\\src\\finalPokemon\\pictures\\bulbasaur2.png"));
+        label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/bulbasaur2.png")));
         type = "Grass";
         //Moveset
         attack0 = "Seed Bomb";
@@ -28,6 +28,5 @@ public class Bulbasaur extends Pokemon {
         //Stats
         atk = 49;
         hp = 45;
-        def = 49;
     }
 }

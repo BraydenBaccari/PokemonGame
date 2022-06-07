@@ -156,7 +156,7 @@ public class StartMenu extends javax.swing.JFrame {
 
     private void setText() {
         ImageIcon icon;
-        icon = new ImageIcon("\\pictures\\title.png");    
+        icon = new ImageIcon(getClass().getResource("/finalPokemon/pictures/title.png"));
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(title.getWidth(), title.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
