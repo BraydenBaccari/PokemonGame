@@ -23,10 +23,19 @@ public class Cyndaquil extends Pokemon {
         name = "Cyndaquil";
         type = "Fire";
         //Moveset   
-        attack0 = "Tackle";
-        attack1 = "Quick Attack";
-        attack2 = "Smoke Screen";
-        attack3 = "Flamethrower";
+
+        attackValues.add(0);
+        attackNames.add("Tackle");
+
+        attackValues.add(0);
+        attackNames.add("Quick Attack");
+
+        attackValues.add(0);
+        attackNames.add("Smoke Screen");
+
+        attackValues.add(0);
+        attackNames.add("Flamethrower");
+        
         //Stats
         atk = 52;
         hp = 39;

@@ -14,6 +14,7 @@ public class Bulbasaur extends Pokemon {
 
     /**
      * Default constructor, set class properties
+     * @param label
      */
     public Bulbasaur(JLabel label) {
         super(label);
@@ -21,10 +22,19 @@ public class Bulbasaur extends Pokemon {
         label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/bulbasaur2.png")));
         type = "Grass";
         //Moveset
-        attack0 = "Seed Bomb";
-        attack1 = "Sleep Powder";
-        attack2 = "Synthesis";
-        attack3 = "Leech Seed";
+         
+        attackValues.add(0.3);
+        attackNames.add("Seed Bomb");       
+
+        attackValues.add(0.05);
+        attackNames.add("Sleep Powder");
+
+        attackValues.add(0.1);
+        attackNames.add("Synthesis");
+
+        attackValues.add(0.1);
+        attackNames.add("Leech Seed");
+        
         //Stats
         atk = 49;
         hp = 45;

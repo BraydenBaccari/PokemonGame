@@ -14,13 +14,17 @@ public class Pokemon {
 
     public String name;
     public String type;
-    public LinkedList attacks = new LinkedList();
     public JLabel label;
+
     // attacks
-    public String attack0;
-    public String attack1;
-    public String attack2;
-    public String attack3;
+//    public LinkedList attack0 = new LinkedList();
+//    public LinkedList attack1 = new LinkedList();
+//    public LinkedList attack2 = new LinkedList();
+//    public LinkedList attack3 = new LinkedList();
+    
+    public LinkedList attackNames  = new LinkedList();
+    public LinkedList attackValues = new LinkedList();
+
     //stats
     public int hp;
     public int atk;
@@ -35,12 +39,6 @@ public class Pokemon {
         //Moveset
         hp = 0;
         atk = 0;
-        //moveset
-        attack0 = null;
-        attack1 = null;
-        attack2 = null;
-        attack3 = null;
-
     }
 
     public boolean equals(Object object) {
