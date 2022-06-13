@@ -3,6 +3,7 @@ package finalPokemon.pokemon;
 
 import java.util.LinkedList;
 import javax.swing.JLabel;
+import finalPokemon.GameScreen;
 
 /**
  * Pokemon.java - description
@@ -21,8 +22,7 @@ public class Pokemon {
 //    public LinkedList attack1 = new LinkedList();
 //    public LinkedList attack2 = new LinkedList();
 //    public LinkedList attack3 = new LinkedList();
-    
-    public LinkedList attackNames  = new LinkedList();
+    public LinkedList attackNames = new LinkedList();
     public LinkedList attackValues = new LinkedList();
 
     //stats
@@ -41,7 +41,17 @@ public class Pokemon {
         atk = 0;
     }
 
-    public boolean equals(Object object) {
-        return super.equals(object);
+    public Pokemon getFriendly() {
+        return this;
     }
+
+    public String getAttack(int button) {
+        return (String) getFriendly().attackNames.get(button - 1);
+    }
+
+    public double damage(Pokemon pokemonAttack, double multiplier) {
+        double dmg = pokemonAttack.atk * multiplier;
+        return dmg;
+    }
+
 }

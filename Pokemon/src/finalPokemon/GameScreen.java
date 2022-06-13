@@ -131,7 +131,7 @@ public class GameScreen extends JFrame {
 
         friendlyHealth.setText("heatlh");
         getContentPane().add(friendlyHealth);
-        friendlyHealth.setBounds(170, 370, 50, 20);
+        friendlyHealth.setBounds(170, 370, 150, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,15 +142,18 @@ public class GameScreen extends JFrame {
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        //chooseMove(2);
+        chooseMove(2);
+        enemyTurn();
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        //chooseMove(3);
+        chooseMove(3);
+        enemyTurn();
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
-        //chooseMove(4);
+        chooseMove(4);
+        enemyTurn();
     }//GEN-LAST:event_button4ActionPerformed
 
     private void setFrame() {
@@ -213,11 +216,6 @@ public class GameScreen extends JFrame {
         enemy.setOpaque(true);
     }
 
-    private double attack(Pokemon attack, double multiplier) {
-        double dmg = attack.atk * multiplier;
-        return dmg;
-    }
-
     /**
      * makes a random number between the high, low and size variables
      *
@@ -249,57 +247,27 @@ public class GameScreen extends JFrame {
     }
 
     protected void enemyTurn() {
-        timer();
-
         String attackName = "attackName";
-        double dmg = 0;
-        switch (random(1, 1)) {
-            case 1:
-                dmg = attack(getEnemy(), 0.2);
-                friendlyHp -= dmg;
-                friendlyHealth.setText(friendlyHp + "/" + getFriendly().hp);
-                int index = getFriendly().attackNames.indexOf("Seed Bomb");
-                attackName = (String) getEnemy().attackNames.get(index);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                break;
-        }
-        output.setText(getEnemy().name + " used " + attackName + " and did " + dmg + " damage!");
+        int index = getEnemy().attackNames.indexOf(getEnemy().getAttack(random(1, 4)));
+        double value = (double) getEnemy().attackValues.get(index);
+        double dmg = getEnemy().damage(getEnemy(), value);
+        friendlyHp -= dmg;
+        friendlyHealth.setText(friendlyHp + "/" + (int) getFriendly().hp);
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+        output.setText(getEnemy().name + " used " + attackName + " and did " +(int) dmg + " damage!");
     }
 
     private void chooseMove(int button) {
-        if (bu) {
-            if (button == 1) {
-
-                int index = getFriendly().attackNames.indexOf("Seed Bomb");
-                double value = (double) getFriendly().attackValues.get(index);
-                double dmg = attack(bulbasaur, value);
-                enemyHp -= dmg;
-                enemyHealth.setText(enemyHp + "/" + cyndaquil.hp);
-                output.setText("Bulbasaur used Seed Bomb and did " + dmg + " damage!");
-                button1.setEnabled(false);
-                button2.setEnabled(false);
-                button3.setEnabled(false);
-                button4.setEnabled(false);
-            }
-        } else if (ch) {
-            //scratch();
-        } else if (sq) {
-            //tackle();
-        }
-
+        friendlyAttack(button);
         if (enemyHp <= 0) {
             output.setText(currentEnemy + " has fainted!");
             System.exit(0);
         }
-
         //Delay
+        enemyTurn();
     }
 
     private Pokemon getEnemy() {
@@ -319,13 +287,21 @@ public class GameScreen extends JFrame {
         return friendly;
     }
 
-    public void timer() {
-        int delay = 2000; // number of milliseconds to sleep
+    private void friendlyAttack(int button) {
+        int index = getFriendly().attackNames.indexOf(getFriendly().getAttack(button));
+        double value = (double) getFriendly().attackValues.get(index);
+        double dmg = getFriendly().damage(getFriendly(), value);
+        enemyHp -= dmg;
+        enemyHealth.setText(enemyHp + "/" + getEnemy().hp);
+        output(button, dmg);
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
+    }
 
-        long start = System.currentTimeMillis();
-        while (start >= System.currentTimeMillis() - delay); // do nothing
-
-        System.out.println("Time Slept: " + Long.toString(System.currentTimeMillis() - start));
+    private void output(int button, double dmg) {
+        output.setText(getFriendly() + " used " + getFriendly().getAttack(button) + " and did " + (int) dmg + " damage!");
     }
 
 }

@@ -23,16 +23,16 @@ public class Bulbasaur extends Pokemon {
         type = "Grass";
         //Moveset
          
-        attackValues.add(0.3);
+        attackValues.add(0.1);
         attackNames.add("Seed Bomb");       
 
         attackValues.add(0.05);
         attackNames.add("Sleep Powder");
 
-        attackValues.add(0.1);
+        attackValues.add(0.07);
         attackNames.add("Synthesis");
 
-        attackValues.add(0.1);
+        attackValues.add(0.08);
         attackNames.add("Leech Seed");
         
         //Stats
