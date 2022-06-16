@@ -4,6 +4,7 @@
  */
 package finalPokemon;
 
+import finalPokemon.pokemon.Properties;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -22,7 +23,6 @@ public class StartMenu extends javax.swing.JFrame {
     public static boolean charmanderIsActive = false;
     public static boolean bulbasaurIsActive = false;
     public static boolean squirtleIsActive = false;
-    final String TITLE = "Pokemon";
     int i = 0;
 
     /**
@@ -84,7 +84,7 @@ public class StartMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "how did a monkey get on the internet");
         } else {
             if (charmanderIsActive == false && squirtleIsActive == false && bulbasaurIsActive == false) {
-                JOptionPane.showMessageDialog(null, "Please pick a pokemon", TITLE, JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please pick a pokemon", Properties.TITLE, JOptionPane.PLAIN_MESSAGE);
                 i++;
             } else {
                 

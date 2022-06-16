@@ -19,5 +19,7 @@ public class Properties {
     public static final String CYNDAQUIL_ICON = "/finalPokemon/pictures/cyndaquil.png";
     public static final String WEEDLE_ICON = "/finalPokemon/pictures/weedle.png";
     public static final String HERDIER_ICON = "/finalPokemon/pictures/herdier.gif";
+    public static final String GARCHOMP_ICON = "/finalPokemon/pictures/garchomp.png";
+    public static final String TITLE = "Pokemon";
 
 }

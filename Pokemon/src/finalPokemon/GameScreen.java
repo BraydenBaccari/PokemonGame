@@ -10,15 +10,15 @@ import static finalPokemon.StartMenu.squirtleIsActive;
 import finalPokemon.pokemon.Bulbasaur;
 import finalPokemon.pokemon.Charmander;
 import finalPokemon.pokemon.Cyndaquil;
+import finalPokemon.pokemon.Garchomp;
 import finalPokemon.pokemon.Herdier;
 import finalPokemon.pokemon.Pokemon;
+import finalPokemon.pokemon.Properties;
 import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import finalPokemon.pokemon.Squirtle;
 import finalPokemon.pokemon.Weedle;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +37,7 @@ public class GameScreen extends JFrame {
     public Pokemon currentEnemy;
     public Pokemon friendly;
     public int enemyHp;
-
+    public int lastLevel;
     public double friendlyHp;
 
     /**
@@ -51,7 +51,7 @@ public class GameScreen extends JFrame {
         initComponents();
         setFrame();
         setText();
-        level(random(1, 3));
+        level(random(1, 4));
         initialize(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
 
     }
@@ -191,29 +191,40 @@ public class GameScreen extends JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void level(int lvlNum) {
-        switch (lvlNum) {
-            case 1:
-                Cyndaquil cyndaquil = new Cyndaquil(enemy);
-                currentEnemy = cyndaquil;
-                enemy();
-                break;
-            case 2:
-                Weedle weedle = new Weedle(enemy);
-                currentEnemy = weedle;
-                enemy();
-                break;
-            case 3:
-                Herdier herdier = new Herdier(enemy);
-                currentEnemy = herdier;
-                enemy();
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            default:
-                break;
+        
+        if (lvlNum != lastLevel) {
+
+            switch (lvlNum) {
+                case 1:
+                    Cyndaquil cyndaquil = new Cyndaquil(enemy);
+                    currentEnemy = cyndaquil;
+                    enemy();
+                    break;
+                case 2:
+                    Weedle weedle = new Weedle(enemy);
+                    currentEnemy = weedle;
+                    enemy();
+                    break;
+                case 3:
+                    Herdier herdier = new Herdier(enemy);
+                    currentEnemy = herdier;
+                    enemy();
+                    break;
+                case 4:
+                    Garchomp garchomp = new Garchomp(enemy);
+                    currentEnemy = garchomp;
+                    enemy();
+                    break;
+                case 5:
+                    break;
+                default:
+                    break;
+            }
         }
+        else{
+        level(random(1,4));
+        }
+        lastLevel = lvlNum;
     }
 
     private void setText() {
@@ -244,19 +255,19 @@ public class GameScreen extends JFrame {
         String attackName = (String) getEnemy().attackNames.get(index);
         double dmg = getEnemy().damage(getEnemy(), value);
         friendlyHp -= dmg;
-        friendlyHealth.setText(friendlyHp + "/" + (int) getFriendly().hp);
+        friendlyHealth.setText((int) friendlyHp + "/" + (int) getFriendly().hp);
         button1.setEnabled(true);
         button2.setEnabled(true);
         button3.setEnabled(true);
         button4.setEnabled(true);
         if (friendlyHp <= 0) {
             friendlyHp = 0;
-            output.setText(getEnemy().name + " used " + attackName + " and did " + (int) dmg + " damage!");
-            output.setText(getFriendly().name + " fainted!");
+            output.setText(getEnemy().name + " used " + attackName + " and did " + dmg + " damage!");
             this.dispose();
+            JOptionPane.showMessageDialog(null, "Your " + getFriendly().name + " fainted :(\nReturning to menu...", Properties.TITLE, JOptionPane.PLAIN_MESSAGE);
             StartMenu menu = new StartMenu();
         } else {
-            output.setText(getEnemy().name + " used " + attackName + " and did " + (int) dmg + " damage!");
+            output.setText(getEnemy().name + " used " + attackName + " and did " + dmg + " damage!");
         }
 
     }
@@ -265,7 +276,7 @@ public class GameScreen extends JFrame {
         friendlyAttack(button);
         if (enemyHp <= 0) {
             output.setText(currentEnemy.name + " has fainted!");
-            level(random(1,3));
+            level(random(1, 3));
         }
 
         //Delay
@@ -276,7 +287,6 @@ public class GameScreen extends JFrame {
         return currentEnemy;
     }
 
-    
     private Pokemon getFriendly() {
         if (bu) {
             friendly = bulbasaur;
@@ -305,10 +315,10 @@ public class GameScreen extends JFrame {
 
     private void output(int button, double dmg) {
         output.setText(getFriendly().name + " used " + getFriendly().getAttack(button) + " and did " + (int) dmg + " damage!");
-    }  
+    }
 
     private void enemy() {
-      output.setText("A wild " + getEnemy().name + " has appeared!");
+        output.setText("A wild " + getEnemy().name + " has appeared!");
         currentEnemy = getEnemy();
         enemyHp = getEnemy().hp;
 
