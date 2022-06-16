@@ -19,20 +19,20 @@ public class Charmander extends Pokemon {
         super(label);
 
         name = "Charmander";
-        label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/charmander2.png")));
+        label.setIcon(new ImageIcon(getClass().getResource(Properties.CHARMANDER_ICON_RIGHT)));
         type = "Fire";
         //Moveset
 
-        attackValues.add(0);
+        attackValues.add(0.05);
         attackNames.add("Scratch");
 
-        attackValues.add(0);
+        attackValues.add(0.03);
         attackNames.add("Fire Fang");
 
-        attackValues.add(0);
+        attackValues.add(0.01);
         attackNames.add("Smoke Screen");
 
-        attackValues.add(0);
+        attackValues.add(0.04);
         attackNames.add("Flamethrower");
         
         //Stats

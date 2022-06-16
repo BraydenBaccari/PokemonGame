@@ -5,6 +5,7 @@
 package finalPokemon;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -151,6 +152,7 @@ public class StartMenu extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setSize(1000,600);
         this.setLocationRelativeTo(null);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("/finalPokemon/pictures/title.png"));
         this.setVisible(true);
     }
 

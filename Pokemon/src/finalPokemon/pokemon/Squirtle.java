@@ -19,21 +19,21 @@ public class Squirtle extends Pokemon {
         super(label);
 
         name = "Squirtle";
-        label.setIcon(new ImageIcon(getClass().getResource("/finalPokemon/pictures/squirtle2.png")));
+        label.setIcon(new ImageIcon(getClass().getResource(Properties.SQUIRTLE_ICON_RIGHT)));
         //label.setText(name);
         type = "Water";
         //Moveset 
 
-        attackValues.add(0);
+        attackValues.add(.02);
         attackNames.add("Tackle");
 
-        attackValues.add(0);
+        attackValues.add(.034);
         attackNames.add("Water Gun");
 
-        attackValues.add(0);
+        attackValues.add(.01);
         attackNames.add("Protect");
 
-        attackValues.add(0);
+        attackValues.add(.045);
         attackNames.add("Aqua Tail");
 
         //Stats

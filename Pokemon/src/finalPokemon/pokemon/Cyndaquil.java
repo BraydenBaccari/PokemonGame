@@ -15,7 +15,7 @@ public class Cyndaquil extends Pokemon {
 
     public Cyndaquil(JLabel label) {
         super(label);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/finalPokemon/pictures/cyndaquil.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource(Properties.CYNDAQUIL_ICON));
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);

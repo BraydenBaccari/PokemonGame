@@ -10,13 +10,15 @@ import static finalPokemon.StartMenu.squirtleIsActive;
 import finalPokemon.pokemon.Bulbasaur;
 import finalPokemon.pokemon.Charmander;
 import finalPokemon.pokemon.Cyndaquil;
+import finalPokemon.pokemon.Herdier;
 import finalPokemon.pokemon.Pokemon;
 import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import finalPokemon.pokemon.Squirtle;
+import finalPokemon.pokemon.Weedle;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
 
 /**
  *
@@ -27,7 +29,6 @@ public class GameScreen extends JFrame {
     private Bulbasaur bulbasaur;
     private Charmander charmander;
     private Squirtle squirtle;
-    private Cyndaquil cyndaquil;
 
     public boolean ch;
     public boolean bu;
@@ -50,7 +51,7 @@ public class GameScreen extends JFrame {
         initComponents();
         setFrame();
         setText();
-        level(random(1, 1));
+        level(random(1, 3));
         initialize(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
 
     }
@@ -127,7 +128,7 @@ public class GameScreen extends JFrame {
 
         enemyHealth.setText("health");
         getContentPane().add(enemyHealth);
-        enemyHealth.setBounds(800, 370, 33, 16);
+        enemyHealth.setBounds(800, 370, 100, 16);
 
         friendlyHealth.setText("heatlh");
         getContentPane().add(friendlyHealth);
@@ -138,22 +139,18 @@ public class GameScreen extends JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         chooseMove(1);
-        enemyTurn();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         chooseMove(2);
-        enemyTurn();
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         chooseMove(3);
-        enemyTurn();
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         chooseMove(4);
-        enemyTurn();
     }//GEN-LAST:event_button4ActionPerformed
 
     private void setFrame() {
@@ -196,11 +193,19 @@ public class GameScreen extends JFrame {
     private void level(int lvlNum) {
         switch (lvlNum) {
             case 1:
-                cyndaquil();
+                Cyndaquil cyndaquil = new Cyndaquil(enemy);
+                currentEnemy = cyndaquil;
+                enemy();
                 break;
             case 2:
+                Weedle weedle = new Weedle(enemy);
+                currentEnemy = weedle;
+                enemy();
                 break;
             case 3:
+                Herdier herdier = new Herdier(enemy);
+                currentEnemy = herdier;
+                enemy();
                 break;
             case 4:
                 break;
@@ -233,23 +238,10 @@ public class GameScreen extends JFrame {
 
     }
 
-    private void cyndaquil() {
-        output.setText("A wild cyndaquil has appeared!");
-        cyndaquil = new Cyndaquil(enemy);
-        currentEnemy = cyndaquil;
-        enemyHp = cyndaquil.hp;
-
-        //Enemy health text
-        enemyHealth.setOpaque(true);
-        enemyHealth.setVisible(true);
-        enemyHealth.setText(enemyHp + "/" + cyndaquil.hp);
-        add(enemyHealth);
-    }
-
     protected void enemyTurn() {
-        String attackName = "attackName";
         int index = getEnemy().attackNames.indexOf(getEnemy().getAttack(random(1, 4)));
         double value = (double) getEnemy().attackValues.get(index);
+        String attackName = (String) getEnemy().attackNames.get(index);
         double dmg = getEnemy().damage(getEnemy(), value);
         friendlyHp -= dmg;
         friendlyHealth.setText(friendlyHp + "/" + (int) getFriendly().hp);
@@ -257,15 +249,25 @@ public class GameScreen extends JFrame {
         button2.setEnabled(true);
         button3.setEnabled(true);
         button4.setEnabled(true);
-        output.setText(getEnemy().name + " used " + attackName + " and did " +(int) dmg + " damage!");
+        if (friendlyHp <= 0) {
+            friendlyHp = 0;
+            output.setText(getEnemy().name + " used " + attackName + " and did " + (int) dmg + " damage!");
+            output.setText(getFriendly().name + " fainted!");
+            this.dispose();
+            StartMenu menu = new StartMenu();
+        } else {
+            output.setText(getEnemy().name + " used " + attackName + " and did " + (int) dmg + " damage!");
+        }
+
     }
 
     private void chooseMove(int button) {
         friendlyAttack(button);
         if (enemyHp <= 0) {
-            output.setText(currentEnemy + " has fainted!");
-            System.exit(0);
+            output.setText(currentEnemy.name + " has fainted!");
+            level(random(1,3));
         }
+
         //Delay
         enemyTurn();
     }
@@ -274,6 +276,7 @@ public class GameScreen extends JFrame {
         return currentEnemy;
     }
 
+    
     private Pokemon getFriendly() {
         if (bu) {
             friendly = bulbasaur;
@@ -301,7 +304,18 @@ public class GameScreen extends JFrame {
     }
 
     private void output(int button, double dmg) {
-        output.setText(getFriendly() + " used " + getFriendly().getAttack(button) + " and did " + (int) dmg + " damage!");
-    }
+        output.setText(getFriendly().name + " used " + getFriendly().getAttack(button) + " and did " + (int) dmg + " damage!");
+    }  
 
+    private void enemy() {
+      output.setText("A wild " + getEnemy().name + " has appeared!");
+        currentEnemy = getEnemy();
+        enemyHp = getEnemy().hp;
+
+        //Enemy health text
+        enemyHealth.setOpaque(true);
+        enemyHealth.setVisible(true);
+        enemyHealth.setText(enemyHp + "/" + getEnemy().hp);
+        add(enemyHealth);
+    }
 }
