@@ -21,5 +21,6 @@ public class Properties {
     public static final String HERDIER_ICON = "/finalPokemon/pictures/herdier.gif";
     public static final String GARCHOMP_ICON = "/finalPokemon/pictures/garchomp.png";
     public static final String TITLE = "Pokemon";
+    public static final String HIGH_SCORE = "/data/data.txt";
 
 }

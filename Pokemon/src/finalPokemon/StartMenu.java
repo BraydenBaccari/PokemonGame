@@ -4,12 +4,16 @@
  */
 package finalPokemon;
 
+import collections.LinkedList;
+import finalPokemon.pokemon.FileHandler;
 import finalPokemon.pokemon.Properties;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -23,6 +27,10 @@ public class StartMenu extends javax.swing.JFrame {
     public static boolean charmanderIsActive = false;
     public static boolean bulbasaurIsActive = false;
     public static boolean squirtleIsActive = false;
+    private FileHandler playerData;
+
+    public int highScoreText;
+
     int i = 0;
 
     /**
@@ -87,7 +95,7 @@ public class StartMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please pick a pokemon", Properties.TITLE, JOptionPane.PLAIN_MESSAGE);
                 i++;
             } else {
-                
+
                 GameScreen screen = new GameScreen(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
                 this.dispose();
             }
@@ -150,7 +158,7 @@ public class StartMenu extends javax.swing.JFrame {
     private void setFrame() {
         this.setTitle("Pokemon");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setSize(1000,600);
+        this.setSize(1000, 600);
         this.setLocationRelativeTo(null);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("/finalPokemon/pictures/title.png"));
         this.setVisible(true);
@@ -165,5 +173,5 @@ public class StartMenu extends javax.swing.JFrame {
         title.setIcon(scaledIcon);
         title.setOpaque(true);
         add(title);
-    }
+    } 
 }

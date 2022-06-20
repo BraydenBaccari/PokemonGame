@@ -5,6 +5,7 @@
 package finalPokemon;
 
 import finalPokemon.pokemon.FileHandler;
+import finalPokemon.pokemon.Properties;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,9 +24,11 @@ public class PokemonSelect extends javax.swing.JFrame {
     public boolean charmanderIsActive = StartMenu.charmanderIsActive;
     public boolean bulbasaurIsActive = StartMenu.bulbasaurIsActive;
     public boolean squirtleIsActive = StartMenu.squirtleIsActive;
+    private FileHandler playerData;
+
+    public int highScoreText;
 
     public PokemonSelect() {
-        highScore();
         initComponents();
         setFrame();
         checkPokemon();
@@ -47,7 +50,6 @@ public class PokemonSelect extends javax.swing.JFrame {
         bulbasaurPic = new javax.swing.JLabel();
         squirtlePic = new javax.swing.JLabel();
         charmanderPic = new javax.swing.JLabel();
-        highScore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,8 +87,6 @@ public class PokemonSelect extends javax.swing.JFrame {
 
         charmanderPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalPokemon/pictures/charmander.png"))); // NOI18N
 
-        highScore.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,16 +110,11 @@ public class PokemonSelect extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(410, 410, 410)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(highScore))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(highScore)
-                .addGap(77, 77, 77)
+                .addGap(120, 120, 120)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -262,7 +257,6 @@ public class PokemonSelect extends javax.swing.JFrame {
     private java.awt.Button button1;
     private javax.swing.JCheckBox charmanderBox;
     private javax.swing.JLabel charmanderPic;
-    private javax.swing.JLabel highScore;
     private javax.swing.JCheckBox squirtleBox;
     private javax.swing.JLabel squirtlePic;
     // End of variables declaration//GEN-END:variables
@@ -296,11 +290,6 @@ public class PokemonSelect extends javax.swing.JFrame {
         } else if (StartMenu.squirtleIsActive == false) {
             squirtleBox.setSelected(false);
         }
-    }
-
-    private void highScore() {
-        FileHandler file = new FileHandler("HighScore");
-        //file.write();
     }
 
 }
