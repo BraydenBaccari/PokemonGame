@@ -21,8 +21,8 @@ public class Garchomp extends Pokemon
         Image imgScale = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         label.setIcon(scaledIcon);
-        name = "Cyndaquil";
-        type = "Fire";
+        name = "Garchomp";
+        type = "Dragon";
         //Moveset   
 
         attackValues.add(0.8);

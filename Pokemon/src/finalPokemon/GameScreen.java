@@ -18,7 +18,10 @@ import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import finalPokemon.pokemon.Squirtle;
 import finalPokemon.pokemon.Weedle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -26,19 +29,24 @@ import javax.swing.JOptionPane;
  */
 public class GameScreen extends JFrame {
 
+    //Base pokemon objects
     private Bulbasaur bulbasaur;
     private Charmander charmander;
     private Squirtle squirtle;
 
+    //Selected pokemon booleans
     public boolean ch;
     public boolean bu;
     public boolean sq;
 
+    //Current properties
     public Pokemon currentEnemy;
     public Pokemon friendly;
     public int enemyHp;
     public int lastLevel;
     public double friendlyHp;
+
+    public static int score;
 
     /**
      * Creates new form GameScreen
@@ -50,7 +58,6 @@ public class GameScreen extends JFrame {
 
         initComponents();
         setFrame();
-        setText();
         level(random(1, 4));
         initialize(charmanderIsActive, bulbasaurIsActive, squirtleIsActive);
 
@@ -74,6 +81,7 @@ public class GameScreen extends JFrame {
         output = new javax.swing.JLabel();
         enemyHealth = new javax.swing.JLabel();
         friendlyHealth = new javax.swing.JLabel();
+        scoreText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -134,6 +142,10 @@ public class GameScreen extends JFrame {
         getContentPane().add(friendlyHealth);
         friendlyHealth.setBounds(170, 370, 150, 20);
 
+        scoreText.setText("jLabel2");
+        getContentPane().add(scoreText);
+        scoreText.setBounds(30, 20, 190, 16);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,6 +165,9 @@ public class GameScreen extends JFrame {
         chooseMove(4);
     }//GEN-LAST:event_button4ActionPerformed
 
+    /**
+     * Sets frame properties
+     */
     private void setFrame() {
         this.setTitle("Pokemon");
         this.setSize(1000, 800);
@@ -161,6 +176,14 @@ public class GameScreen extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Initializes the selected pokemon object by setting properties and
+     * graphics
+     *
+     * @param ch charmander boolean
+     * @param bu bulbasaur boolean
+     * @param sq squirtle boolean
+     */
     private void initialize(boolean ch, boolean bu, boolean sq) {
         if (bu) {
             bulbasaur = new Bulbasaur(jLabel1);
@@ -188,10 +211,16 @@ public class GameScreen extends JFrame {
     private javax.swing.JLabel friendlyHealth;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel output;
+    private javax.swing.JLabel scoreText;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Selects the level by using random method
+     *
+     * @param lvlNum random value
+     */
     private void level(int lvlNum) {
-        
+
         if (lvlNum != lastLevel) {
 
             switch (lvlNum) {
@@ -220,16 +249,12 @@ public class GameScreen extends JFrame {
                 default:
                     break;
             }
-        }
-        else{
-        level(random(1,4));
+        } else {
+            level(random(1, 4));
         }
         lastLevel = lvlNum;
-    }
-
-    private void setText() {
-        enemy.setVisible(true);
-        enemy.setOpaque(true);
+        score++;
+        scoreText.setText("Score: " + score);
     }
 
     /**
@@ -249,6 +274,11 @@ public class GameScreen extends JFrame {
 
     }
 
+    /**
+     * Starts the enemies turn
+     * gets the attack that the enemy will use through the random method
+     * calculates damage and inflicts it on the friendly
+     */
     protected void enemyTurn() {
         int index = getEnemy().attackNames.indexOf(getEnemy().getAttack(random(1, 4)));
         double value = (double) getEnemy().attackValues.get(index);
@@ -272,21 +302,48 @@ public class GameScreen extends JFrame {
 
     }
 
+    
+    private Timer delayer;
+    
+    /**
+     * uses the attack based on the button that was clicked
+     * and checks if the enemy has died
+     * 
+     * @param button the button clicked
+     */
     private void chooseMove(int button) {
         friendlyAttack(button);
         if (enemyHp <= 0) {
             output.setText(currentEnemy.name + " has fainted!");
-            level(random(1, 3));
+            level(random(1,4));
         }
 
         //Delay
-        enemyTurn();
+        delayer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enemyTurn();          
+                delayer.stop();
+            }
+        });
+        delayer.start();
+
     }
 
+    /**
+     * Returns the current enemy
+     * 
+     * @return current enemy
+     */
     private Pokemon getEnemy() {
         return currentEnemy;
     }
 
+    /**
+     * Returns the current friendly pokemon
+     * 
+     * @return the current friendly
+     */
     private Pokemon getFriendly() {
         if (bu) {
             friendly = bulbasaur;
@@ -300,6 +357,12 @@ public class GameScreen extends JFrame {
         return friendly;
     }
 
+    /**
+     * Executes the friendly attack by taking a button press. Calculates the 
+     * damage by using the attack() method and subtracts it from the enemy health
+     * 
+     * @param button the button clicked
+     */
     private void friendlyAttack(int button) {
         int index = getFriendly().attackNames.indexOf(getFriendly().getAttack(button));
         double value = (double) getFriendly().attackValues.get(index);
@@ -313,11 +376,22 @@ public class GameScreen extends JFrame {
         button4.setEnabled(false);
     }
 
+    /**
+     * Outputs event by changing a label on the JFrame
+     * 
+     * @param button the button clicked
+     * @param dmg the damage inflicted
+     */
     private void output(int button, double dmg) {
         output.setText(getFriendly().name + " used " + getFriendly().getAttack(button) + " and did " + (int) dmg + " damage!");
     }
 
+    /**
+     * Sets the enemy properties and graphics
+     */
     private void enemy() {
+        enemy.setVisible(true);
+        enemy.setOpaque(true);
         output.setText("A wild " + getEnemy().name + " has appeared!");
         currentEnemy = getEnemy();
         enemyHp = getEnemy().hp;

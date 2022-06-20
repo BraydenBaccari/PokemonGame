@@ -11,7 +11,7 @@ import finalPokemon.GameScreen;
  * @author Liam McCausland
  * @since 10-May-2022, 3:02:04 PM
  */
-public class Pokemon implements PokemonInt{
+public abstract class Pokemon implements PokemonInt{
 
     public String name;
     public String type;

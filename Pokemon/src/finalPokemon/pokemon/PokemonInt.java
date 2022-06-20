@@ -10,7 +10,19 @@ package finalPokemon.pokemon;
  */
 public interface PokemonInt {
 
+    /**
+     * Returns the current pokemon
+     * @return the current pokemon
+     */
     public Pokemon getFriendly();
+    
+    /**
+     * calculates the damage to inflict for the friendly pokemon
+     * 
+     * @param pokemonAttack the attack used
+     * @param multiplier the attack multiplier
+     * @return the damage
+     */
     public double damage(Pokemon pokemonAttack, double multiplier);
     public String getAttack(int button);
 
