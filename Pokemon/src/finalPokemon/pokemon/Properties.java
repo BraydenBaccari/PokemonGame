@@ -2,7 +2,7 @@
 package finalPokemon.pokemon;
 
 /**
- * Properties.java - description
+ * Properties.java - holds properties and paths for labels and other uses.
  *
  * @author Liam McCausland
  * @since 15-Jun-2022, 2:41:10 PM

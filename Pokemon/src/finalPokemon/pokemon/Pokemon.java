@@ -38,16 +38,31 @@ public abstract class Pokemon implements PokemonInt{
         atk = 0;
     }
 
+    /**
+     * Returns the current friendly pokemon
+     * @return the current friendly pokemon
+     */
     @Override
     public Pokemon getFriendly() {
         return this;
     }
 
+    /**
+     * Gets the attack used and returns it.
+     * @param button button clicked
+     * @return the attack used
+     */
     @Override
     public String getAttack(int button) {
         return (String) getFriendly().attackNames.get(button - 1);
     }
     
+    /**
+     * Damage 
+     * @param pokemonAttack
+     * @param multiplier
+     * @return 
+     */
     @Override
     public double damage(Pokemon pokemonAttack, double multiplier) {
         double dmg = pokemonAttack.atk * multiplier;

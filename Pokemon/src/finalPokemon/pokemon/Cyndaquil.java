@@ -6,10 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- * Cyndaquil.java - description
+ * Cyndaquil.java - Represents a Cyndaquil pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 26-May-2022, 3:09:47 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Cyndaquil extends Pokemon {
 

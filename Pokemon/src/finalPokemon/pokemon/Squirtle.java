@@ -5,10 +5,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- * Squirtle.java - description
+ * Squirtle.java - Represents a Squirtle pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 12-May-2022, 2:45:23 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Squirtle extends Pokemon {
 

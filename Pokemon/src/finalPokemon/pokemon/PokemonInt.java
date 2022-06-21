@@ -24,6 +24,12 @@ public interface PokemonInt {
      * @return the damage
      */
     public double damage(Pokemon pokemonAttack, double multiplier);
+    
+    /**
+     * Gets the attack used and returns it.
+     * @param button button clicked
+     * @return the attack used
+     */
     public String getAttack(int button);
 
 }

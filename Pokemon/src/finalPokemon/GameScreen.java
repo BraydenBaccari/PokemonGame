@@ -23,9 +23,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-/**
+/** 
+ * GameScreen.java - The main screen of the program, where most usage will be.
+ * Performs the game and most of the calculations needed for the combat.
  *
- * @author l.mccausland
+ * @author Liam McCausland 
+ * @since 21-June-2022 
  */
 public class GameScreen extends JFrame {
 
@@ -72,7 +75,7 @@ public class GameScreen extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        friend = new javax.swing.JLabel();
         enemy = new javax.swing.JLabel();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
@@ -86,9 +89,9 @@ public class GameScreen extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(77, 141, 231, 204);
+        friend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(friend);
+        friend.setBounds(77, 141, 231, 204);
 
         enemy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(enemy);
@@ -186,11 +189,11 @@ public class GameScreen extends JFrame {
      */
     private void initialize(boolean ch, boolean bu, boolean sq) {
         if (bu) {
-            bulbasaur = new Bulbasaur(jLabel1);
+            bulbasaur = new Bulbasaur(friend);
         } else if (ch) {
-            charmander = new Charmander(jLabel1);
+            charmander = new Charmander(friend);
         } else if (sq) {
-            squirtle = new Squirtle(jLabel1);
+            squirtle = new Squirtle(friend);
         }
 
         friendlyHp = getFriendly().hp;
@@ -208,8 +211,8 @@ public class GameScreen extends JFrame {
     private java.awt.Button button4;
     private javax.swing.JLabel enemy;
     private javax.swing.JLabel enemyHealth;
+    private javax.swing.JLabel friend;
     private javax.swing.JLabel friendlyHealth;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel output;
     private javax.swing.JLabel scoreText;
     // End of variables declaration//GEN-END:variables
@@ -220,7 +223,7 @@ public class GameScreen extends JFrame {
      * @param lvlNum random value
      */
     private void level(int lvlNum) {
-
+        score = 0;
         if (lvlNum != lastLevel) {
 
             switch (lvlNum) {
@@ -253,7 +256,6 @@ public class GameScreen extends JFrame {
             level(random(1, 4));
         }
         lastLevel = lvlNum;
-        score++;
         scoreText.setText("Score: " + score);
     }
 
@@ -315,6 +317,7 @@ public class GameScreen extends JFrame {
         friendlyAttack(button);
         if (enemyHp <= 0) {
             output.setText(currentEnemy.name + " has fainted!");
+            score++;
             level(random(1,4));
         }
 

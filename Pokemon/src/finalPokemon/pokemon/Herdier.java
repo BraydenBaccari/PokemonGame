@@ -7,10 +7,11 @@ import javax.swing.JLabel;
 
  
 /**
- * Herdier.java - description
+ * Herdier.java - Represents a Herdier pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 15-Jun-2022, 12:37:45 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Herdier extends Pokemon{
 

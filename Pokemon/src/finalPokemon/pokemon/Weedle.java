@@ -6,10 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- * Weedle.java - description
+ * Weedle.java - Represents a Weedle pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 15-Jun-2022, 12:27:44 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Weedle extends Pokemon {
 

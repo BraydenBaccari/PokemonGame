@@ -5,10 +5,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- * Charmander.java - description
+ * Charmander.java - Represents a Charmander pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 10-May-2022, 3:04:34 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Charmander extends Pokemon {
 

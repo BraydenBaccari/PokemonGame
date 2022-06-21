@@ -7,10 +7,11 @@ import javax.swing.JLabel;
 
  
 /**
- * Garchomp.java - description
+ * Garchomp.java - Represents a Garchomp pokemon. It holds properties and
+ * sets the label accordingly.
  *
  * @author Liam McCausland
- * @since 16-Jun-2022, 3:03:27 PM
+ * @since 12-May-2022, 2:45:38 PM
  */
 public class Garchomp extends Pokemon
 {

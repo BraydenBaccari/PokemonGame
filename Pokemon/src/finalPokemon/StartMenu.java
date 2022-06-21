@@ -4,33 +4,25 @@
  */
 package finalPokemon;
 
-import collections.LinkedList;
-import finalPokemon.pokemon.FileHandler;
 import finalPokemon.pokemon.Properties;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-/**
+/** 
+ * StartMenu - The starting frame for the user. Gives the option to select 
+ * their pokemon and then play the game.
  *
- * @author l.mccausland
+ * @author Liam McCausland 
+ * @since 21-June-2022 
  */
 public class StartMenu extends javax.swing.JFrame {
 
     public static boolean charmanderIsActive = false;
     public static boolean bulbasaurIsActive = false;
     public static boolean squirtleIsActive = false;
-    private FileHandler playerData;
-
-    public int highScoreText;
-
     int i = 0;
 
     /**

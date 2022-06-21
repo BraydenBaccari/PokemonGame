@@ -4,29 +4,21 @@
  */
 package finalPokemon;
 
-import finalPokemon.pokemon.FileHandler;
-import finalPokemon.pokemon.Properties;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-/**
+/** 
+ * PokemonSelect.java - Used to let the user select one of three pokemon from
+ * the menu. It saves and checks if other pokemon are active.
  *
- * @author l.mccausland
+ * @author Liam McCausland 
+ * @since 21-June-2022 
  */
 public class PokemonSelect extends javax.swing.JFrame {
 
     public boolean charmanderIsActive = StartMenu.charmanderIsActive;
     public boolean bulbasaurIsActive = StartMenu.bulbasaurIsActive;
     public boolean squirtleIsActive = StartMenu.squirtleIsActive;
-    private FileHandler playerData;
-
-    public int highScoreText;
 
     public PokemonSelect() {
         initComponents();
@@ -269,11 +261,9 @@ public class PokemonSelect extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    private void start() {
-        checkPokemon();
-    }
-
-    // he he he ha
+    /**
+     * Checks what pokemon is selected
+     */
     private void checkPokemon() {
         if (StartMenu.charmanderIsActive == true) {
             charmanderBox.setSelected(true);
