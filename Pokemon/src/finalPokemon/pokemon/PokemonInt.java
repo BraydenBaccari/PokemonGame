@@ -4,9 +4,12 @@
  */
 package finalPokemon.pokemon;
 
-/**
+/** 
+ * PokemonInt.java - Sets required methods for pokemon 
+ * objects: getFriendly(), damage(), and getAttack().
  *
- * @author l.mccausland
+ * @author Liam McCausland 
+ * @since 22-June-2022 
  */
 public interface PokemonInt {
 

@@ -5,7 +5,7 @@ import finalPokemon.GameScreen;
 import finalPokemon.StartMenu;
 
 /** 
- * Pokemon.java - 
+ * Pokemon.java - Main class, starts StartMenu.
  *
  * @author Liam McCausland 
  * @since 28-Apr-2022 

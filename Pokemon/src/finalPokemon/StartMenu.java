@@ -11,12 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-/** 
- * StartMenu - The starting frame for the user. Gives the option to select 
- * their pokemon and then play the game.
+/**
+ * StartMenu - The starting frame for the user. Gives the option to select their
+ * pokemon and then play the game.
  *
- * @author Liam McCausland 
- * @since 21-June-2022 
+ * @author Liam McCausland
+ * @since 21-June-2022
  */
 public class StartMenu extends javax.swing.JFrame {
 
@@ -30,7 +30,7 @@ public class StartMenu extends javax.swing.JFrame {
      */
     public StartMenu() {
         initComponents();
-        setText();
+        setTitle();
         setFrame();
     }
 
@@ -46,6 +46,7 @@ public class StartMenu extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         pokemonSelect = new java.awt.Button();
         playButton = new java.awt.Button();
+        quitButton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
@@ -63,7 +64,7 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pokemonSelect);
-        pokemonSelect.setBounds(392, 301, 162, 39);
+        pokemonSelect.setBounds(390, 310, 162, 39);
 
         playButton.setActionCommand("Play");
         playButton.setLabel("Play");
@@ -73,7 +74,17 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(playButton);
-        playButton.setBounds(392, 252, 162, 39);
+        playButton.setBounds(390, 260, 162, 39);
+
+        quitButton.setActionCommand("Play");
+        quitButton.setLabel("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(quitButton);
+        quitButton.setBounds(390, 360, 162, 39);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,6 +111,10 @@ public class StartMenu extends javax.swing.JFrame {
         PokemonSelect select = new PokemonSelect();
         this.dispose();
     }//GEN-LAST:event_pokemonSelectActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +159,13 @@ public class StartMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button playButton;
     private java.awt.Button pokemonSelect;
+    private java.awt.Button quitButton;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Sets frame properties
+     */
     private void setFrame() {
         this.setTitle("Pokemon");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -155,8 +174,10 @@ public class StartMenu extends javax.swing.JFrame {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("/finalPokemon/pictures/title.png"));
         this.setVisible(true);
     }
-
-    private void setText() {
+    /**
+     * Sets the label to the title image
+     */
+    private void setTitle() {
         ImageIcon icon;
         icon = new ImageIcon(getClass().getResource("/finalPokemon/pictures/title.png"));
         Image img = icon.getImage();
@@ -165,5 +186,5 @@ public class StartMenu extends javax.swing.JFrame {
         title.setIcon(scaledIcon);
         title.setOpaque(true);
         add(title);
-    } 
+    }
 }

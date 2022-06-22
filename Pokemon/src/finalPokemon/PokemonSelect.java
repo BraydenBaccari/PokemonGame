@@ -252,7 +252,10 @@ public class PokemonSelect extends javax.swing.JFrame {
     private javax.swing.JCheckBox squirtleBox;
     private javax.swing.JLabel squirtlePic;
     // End of variables declaration//GEN-END:variables
-
+    
+    /**
+     * Sets frame properties
+     */
     private void setFrame() {
         this.setTitle("Pokemon");
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);

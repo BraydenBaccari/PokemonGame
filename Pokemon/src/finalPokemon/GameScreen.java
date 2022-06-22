@@ -49,8 +49,6 @@ public class GameScreen extends JFrame {
     public int lastLevel;
     public double friendlyHp;
 
-    public static int score;
-
     /**
      * Creates new form GameScreen
      */
@@ -84,7 +82,6 @@ public class GameScreen extends JFrame {
         output = new javax.swing.JLabel();
         enemyHealth = new javax.swing.JLabel();
         friendlyHealth = new javax.swing.JLabel();
-        scoreText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -144,10 +141,6 @@ public class GameScreen extends JFrame {
         friendlyHealth.setText("heatlh");
         getContentPane().add(friendlyHealth);
         friendlyHealth.setBounds(170, 370, 150, 20);
-
-        scoreText.setText("jLabel2");
-        getContentPane().add(scoreText);
-        scoreText.setBounds(30, 20, 190, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,7 +207,6 @@ public class GameScreen extends JFrame {
     private javax.swing.JLabel friend;
     private javax.swing.JLabel friendlyHealth;
     private javax.swing.JLabel output;
-    private javax.swing.JLabel scoreText;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -223,7 +215,6 @@ public class GameScreen extends JFrame {
      * @param lvlNum random value
      */
     private void level(int lvlNum) {
-        score = 0;
         if (lvlNum != lastLevel) {
 
             switch (lvlNum) {
@@ -247,16 +238,11 @@ public class GameScreen extends JFrame {
                     currentEnemy = garchomp;
                     enemy();
                     break;
-                case 5:
-                    break;
-                default:
-                    break;
             }
         } else {
             level(random(1, 4));
         }
         lastLevel = lvlNum;
-        scoreText.setText("Score: " + score);
     }
 
     /**
@@ -264,7 +250,7 @@ public class GameScreen extends JFrame {
      *
      * @param low
      * @param high
-     * @return
+     * @return a random number
      */
     private static int random(int low, int high) {
         double seed = Math.random();
@@ -317,7 +303,6 @@ public class GameScreen extends JFrame {
         friendlyAttack(button);
         if (enemyHp <= 0) {
             output.setText(currentEnemy.name + " has fainted!");
-            score++;
             level(random(1,4));
         }
 

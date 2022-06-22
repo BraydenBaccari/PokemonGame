@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import finalPokemon.GameScreen;
 
 /**
- * Pokemon.java - description
+ * Pokemon.java - Represents a pokemon object
  *
  * @author Liam McCausland
  * @since 10-May-2022, 3:02:04 PM
